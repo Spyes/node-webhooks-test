@@ -11,8 +11,12 @@ app.get('/', function (req, res) {
 });
 
 app.listen(PORT, function () {
-    rapid.listen("Slack", "slashCommand", {token: "ydt3vFyVEoW51ZFCC2i5QKab"}, {
+    rapid.listen("Github", "webhooks", {}, {
         onMessage: msg => console.log(msg),
         onClose: (code, reason) => console.log("Closed: ", code, reason)
-    })
+    });
+    rapid.listen("Slack", "slashCommand", {token: "ydt3vFyVEoW51ZFCC2i5QKab"}, {
+        onMessage: msg => console.log(msg),
+        onClose: reason => console.log("Closed: ", reason)
+    });
 });
